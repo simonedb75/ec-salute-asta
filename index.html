@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#07131f">
-<title>EC Salute Asta</title>
+<title>EC Salute Asta v2</title>
 <link rel="manifest" href="manifest.json">
 <style>
 :root{--bg:#07090d;--card:#14171d;--card2:#0b0e13;--line:#303641;--txt:#f5f7fb;--mut:#858d99;--g:#12b886;--b:#1e9bff;--y:#ffd34d;--red:#ff6484}
 *{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
-body{padding-bottom:165px}.app{max-width:430px;margin:auto;min-height:100vh}
+body{padding-bottom:232px}.app{max-width:430px;margin:auto;min-height:100vh}
 header{position:sticky;top:0;z-index:20;background:#09121c;border-bottom:1px solid #1f2a34;padding:calc(10px + env(safe-area-inset-top)) 14px 10px;display:flex;gap:10px;align-items:center}
 .brand{flex:1}.brand b{font-size:20px}.brand small{display:block;color:var(--mut);font-size:12px}.cred{text-align:right}.cred small{display:block;color:var(--mut);font-size:10px}.cred b{font-size:25px;color:#39d7a1}
 .hbtn{width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:#11161d;color:white}main{padding:14px}
@@ -19,14 +19,14 @@ header{position:sticky;top:0;z-index:20;background:#09121c;border-bottom:1px sol
 .grid{border-top:1px solid #2b313a;padding:11px;display:grid;grid-template-columns:1fr 1fr;gap:9px}.stat{background:var(--card2);border-radius:12px;padding:9px 11px;min-height:65px}.stat label{display:block;font-size:10px;color:#747c88;text-transform:uppercase;letter-spacing:.8px}.stat b{font-size:23px;display:block;margin-top:3px}.score{color:#39d7a1}.note{grid-column:1/-1;min-height:0}
 .actions{display:grid;gap:9px;margin-top:13px}.big{height:58px;border-radius:14px;border:1px solid #3a424d;background:#262a31;color:white;font-size:19px;font-weight:900}.mine{background:#0da878;border-color:#0da878}.remain{color:var(--y)}
 .empty{text-align:center;color:#89919c;padding:36px 10px}
-.footer{position:fixed;bottom:0;left:0;right:0;z-index:25;background:#070b10f5;border-top:1px solid #25303b;padding:8px 12px calc(8px + env(safe-area-inset-bottom))}.fi{max-width:430px;margin:auto}.ft{display:grid;grid-template-columns:1.2fr repeat(4,1fr);align-items:end;text-align:center}.ft .left{text-align:left}.ft label,.buds label{display:block;color:#717986;font-size:9px;text-transform:uppercase}.ft b{font-size:19px}.left b{font-size:27px;color:#39d7a1}.max{font-size:10px;color:#89919d}.buds{border-top:1px solid #202832;margin-top:7px;padding-top:7px;display:grid;grid-template-columns:repeat(4,1fr);text-align:center}.buds b{font-size:14px}
-.back{display:none;position:fixed;inset:0;background:#000a;z-index:50;align-items:flex-end;justify-content:center}.sheet{width:min(430px,100%);max-height:92vh;overflow:auto;background:#151922;border:1px solid #39414c;border-radius:22px 22px 0 0;padding:16px 16px calc(18px + env(safe-area-inset-bottom))}.sheet h2{margin:0 0 10px}.x{float:right;border:0;background:none;color:white;font-size:27px}.price{width:100%;font-size:38px;text-align:center;background:#090c11;color:white;border:1px solid #3d4551;border-radius:14px;padding:10px}.quick{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin:10px 0}.quick button,.teamlist button,.settings button{border:1px solid #39414b;background:#242830;color:white;border-radius:11px}.quick button{height:44px;font-weight:900}.signal{text-align:center;font-weight:900;padding:9px}.confirm{width:100%;height:56px;border:0;border-radius:13px;background:#0ba473;color:white;font-size:18px;font-weight:900}.cancel{width:100%;height:44px;border:1px solid #444c57;border-radius:12px;background:none;color:#d9dee6;margin-top:8px}.teamlist{display:grid;grid-template-columns:1fr 1fr;gap:8px}.teamlist button{padding:10px;text-align:left}.teamlist b{display:block}.teamlist small{color:#9ca4af}.tabs{display:flex;gap:6px;margin-bottom:10px}.tabs button{flex:1;padding:10px;border:1px solid #3b4350;background:#22262d;color:white;border-radius:10px;font-weight:900}.tabs .on{background:#0c75db}.lrow{display:grid;grid-template-columns:25px 1fr auto;gap:8px;padding:10px 2px;border-bottom:1px solid #2b313a;align-items:center}.lrow .nm{font-weight:900}.lrow small{color:#929aa6}.mini{text-align:right;font-size:12px}.settings{display:grid;gap:9px}.settings button{height:48px}.select{width:100%;background:#11161c;color:white;border:1px solid #3d4551;border-radius:12px;padding:12px}
+.quickbar{position:fixed;left:0;right:0;bottom:147px;z-index:24;background:#0c1117;border-top:1px solid #25303b;border-bottom:1px solid #25303b;padding:7px 10px}.qbi{max-width:430px;margin:auto;display:grid;grid-template-columns:1fr auto;gap:8px}.remainAlways{height:44px;border-radius:12px;border:1px solid #655a22;background:#28230c;color:#ffd34d;font-weight:900;font-size:15px}.bonus50{height:44px;border-radius:12px;border:1px solid #2e6a57;background:#0f2a22;color:#50e0b0;font-weight:900;padding:0 12px}.rivalsWrap{position:fixed;left:0;right:0;bottom:100px;z-index:23;background:#0a0f15;border-top:1px solid #1d2732;padding:5px 8px}.rivals{max-width:430px;margin:auto;display:flex;gap:6px;overflow-x:auto;padding-bottom:2px;scrollbar-width:none}.rivals::-webkit-scrollbar{display:none}.rchip{flex:0 0 auto;border:1px solid #343d48;background:#171c23;color:#fff;border-radius:10px;padding:6px 9px;font-size:11px;line-height:1.15;text-align:left}.rchip b{display:block;font-size:13px}.rchip.topmax{border-color:#c89e2b;box-shadow:0 0 0 1px #c89e2b inset}.rchip small{color:#9aa2ad}.rivalDetail{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}.rivalDetail .stat{min-height:58px}.sheet{width:min(430px,100%);max-height:92vh;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;background:#151922;border:1px solid #39414c;border-radius:22px 22px 0 0;padding:16px 16px calc(18px + env(safe-area-inset-bottom))}.sheetHead{position:sticky;top:-16px;z-index:4;background:#151922;padding:16px 0 8px;margin-top:-16px}.sheetHead .x{background:#151922}.footer{position:fixed;bottom:0;left:0;right:0;z-index:25;background:#070b10f5;border-top:1px solid #25303b;padding:8px 12px calc(8px + env(safe-area-inset-bottom))}.fi{max-width:430px;margin:auto}.ft{display:grid;grid-template-columns:1.2fr repeat(4,1fr);align-items:end;text-align:center}.ft .left{text-align:left}.ft label,.buds label{display:block;color:#717986;font-size:9px;text-transform:uppercase}.ft b{font-size:19px}.left b{font-size:27px;color:#39d7a1}.max{font-size:10px;color:#89919d}.buds{border-top:1px solid #202832;margin-top:7px;padding-top:7px;display:grid;grid-template-columns:repeat(4,1fr);text-align:center}.buds b{font-size:14px}
+.back{display:none;position:fixed;inset:0;background:#000a;z-index:50;align-items:flex-end;justify-content:center}.sheet h2{margin:0 0 10px}.x{float:right;border:0;background:none;color:white;font-size:27px}.price{width:100%;font-size:38px;text-align:center;background:#090c11;color:white;border:1px solid #3d4551;border-radius:14px;padding:10px}.quick{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin:10px 0}.quick button,.teamlist button,.settings button{border:1px solid #39414b;background:#242830;color:white;border-radius:11px}.quick button{height:44px;font-weight:900}.signal{text-align:center;font-weight:900;padding:9px}.confirm{width:100%;height:56px;border:0;border-radius:13px;background:#0ba473;color:white;font-size:18px;font-weight:900}.cancel{width:100%;height:44px;border:1px solid #444c57;border-radius:12px;background:none;color:#d9dee6;margin-top:8px}.teamlist{display:grid;grid-template-columns:1fr 1fr;gap:8px}.teamlist button{padding:10px;text-align:left}.teamlist b{display:block}.teamlist small{color:#9ca4af}.tabs{display:flex;gap:6px;margin-bottom:10px}.tabs button{flex:1;padding:10px;border:1px solid #3b4350;background:#22262d;color:white;border-radius:10px;font-weight:900}.tabs .on{background:#0c75db}.lrow{display:grid;grid-template-columns:25px 1fr auto;gap:8px;padding:10px 2px;border-bottom:1px solid #2b313a;align-items:center}.lrow .nm{font-weight:900}.lrow small{color:#929aa6}.mini{text-align:right;font-size:12px}.settings{display:grid;gap:9px}.settings button{height:48px}.select{width:100%;background:#11161c;color:white;border:1px solid #3d4551;border-radius:12px;padding:12px}
 </style>
 </head>
 <body>
 <div class="app">
 <header>
-  <div class="brand"><b>EC SALUTE ASTA</b><small>2026/27</small></div>
+  <div class="brand"><b>EC SALUTE ASTA</b><small>2026/27 · v2</small></div>
   <div class="cred"><small>CREDITI</small><b id="hc">500</b></div>
   <button class="hbtn" id="undo">↶</button>
   <button class="hbtn" id="settings">⚙</button>
@@ -41,6 +41,8 @@ header{position:sticky;top:0;z-index:20;background:#09121c;border-bottom:1px sol
   <div id="pa"><div class="empty">Cerca un giocatore per iniziare.</div></div>
 </main>
 
+<div class="quickbar"><div class="qbi"><button class="remainAlways" onclick="remaining('P')">★ MIGLIORI RIMASTI</button><button class="bonus50" onclick="bonus50()">+50</button></div></div>
+<div class="rivalsWrap"><div class="rivals" id="rivals"></div></div>
 <div class="footer"><div class="fi">
   <div class="ft">
     <div class="left"><label>crediti</label><b id="credits">500</b><div class="max">MAX <strong id="max">476</strong></div></div>
@@ -62,7 +64,7 @@ header{position:sticky;top:0;z-index:20;background:#09121c;border-bottom:1px sol
 
 <script src="data.js"></script>
 <script>
-const RM={P:3,D:8,C:8,A:6},RB={P:30,D:75,C:105,A:290},KEY="ecsalute_local_v1";
+const RM={P:3,D:8,C:8,A:6},RB={P:30,D:75,C:105,A:290},KEY="ecsalute_local_v2";
 let selected=null,state=load();
 
 function fresh(){
@@ -70,8 +72,8 @@ function fresh(){
  TEAMS.forEach((t,i)=>ts[i]={...t,initialBudget:500,remainingBudget:500,counts:{P:0,D:0,C:0,A:0},spent:{P:0,D:0,C:0,A:0},players:[]});
  return{teams:ts,sales:{},history:[],dynamic:{...RB},transferred:{P:false,D:false,C:false}};
 }
-function load(){try{return JSON.parse(localStorage.getItem(KEY))||fresh()}catch(e){return fresh()}}
-function save(){localStorage.setItem(KEY,JSON.stringify(state));footer()}
+function load(){try{let v2=JSON.parse(localStorage.getItem(KEY));if(v2)return v2;let v1=JSON.parse(localStorage.getItem("ecsalute_local_v1"));return v1||fresh()}catch(e){return fresh()}}
+function save(){localStorage.setItem(KEY,JSON.stringify(state));footer();rivalStrip()}
 function user(){return state.teams[0]}
 function slots(t){return Object.keys(RM).reduce((a,r)=>a+RM[r]-t.counts[r],0)}
 function maxBid(t,r){if(t.counts[r]>=RM[r])return 0;return Math.max(0,t.remainingBudget-(slots(t)-1))}
@@ -118,8 +120,8 @@ function render(){
  </div>`
 }
 
-function open(h){sheet.innerHTML=h;back.style.display="flex"}
-function close(){back.style.display="none"}
+function open(h){sheet.innerHTML=h;back.style.display="flex";sheet.scrollTop=0}
+function close(){back.style.display="none";sheet.innerHTML=""}
 const back=document.getElementById("back"),sheet=document.getElementById("sheet");
 back.onclick=e=>{if(e.target===back)close()}
 
@@ -143,7 +145,7 @@ function signal(){
 }
 window.confirmSale=i=>{
  let p=selected,t=state.teams[i],price=parseInt(document.getElementById("price").value||0);
- if(!price||price<1)return alert("Prezzo non valido");
+ if(!price||price<1){signal();return;}
  if(t.counts[p.role]>=RM[p.role])return alert("SLOT RUOLO COMPLETO");
  let mb=maxBid(t,p.role);if(price>mb)return alert("Massimo spendibile: "+mb);
  let before=JSON.parse(JSON.stringify({teams:state.teams,dynamic:state.dynamic,transferred:state.transferred,sales:state.sales}));
@@ -158,7 +160,7 @@ window.confirmSale=i=>{
 
 window.other=()=>{
  let h='<button class="x" onclick="close()">×</button><h2>Altra squadra</h2><div class="teamlist">';
- for(let i=1;i<TEAMS.length;i++)h+=`<button onclick="purchase(${i})"><b>${state.teams[i].president}</b><small>${state.teams[i].name}</small></button>`;
+ for(let i=1;i<TEAMS.length;i++)h+=`<button onclick="purchase(${i})"><b>${state.teams[i].president}</b><small>${state.teams[i].name} · ${state.teams[i].remainingBudget} cr</small></button>`;
  open(h+'</div>')
 }
 
@@ -180,6 +182,10 @@ function footer(){
  })
 }
 
+function rivalStrip(){const arr=Object.entries(state.teams).filter(([i])=>+i!==0);let high=Math.max(...arr.map(([i,t])=>Math.max(0,t.remainingBudget-Math.max(0,slots(t)-1))));const el=document.getElementById("rivals");el.innerHTML=arr.map(([i,t])=>{let m=Math.max(0,t.remainingBudget-Math.max(0,slots(t)-1));return `<button class="rchip ${m===high?"topmax":""}" onclick="rivalDetail(${i})"><b>${t.president} ${t.remainingBudget}</b><small>MAX ${m}</small></button>`}).join("")}
+window.rivalDetail=i=>{let t=state.teams[i],m=Math.max(0,t.remainingBudget-Math.max(0,slots(t)-1));let roster=t.players.map(x=>{let p=PLAYERS.find(z=>z.id===x.playerId);return p?`${p.name} (${p.role}) · ${x.price}`:""}).filter(Boolean);open(`<div class="sheetHead"><button class="x" onclick="close()">×</button><h2>${t.name}</h2></div><div style="color:#9da5b0">${t.president}</div><div class="rivalDetail"><div class="stat"><label>Crediti</label><b>${t.remainingBudget}</b></div><div class="stat"><label>MAX offerta</label><b>${m}</b></div><div class="stat"><label>P</label><b>${t.counts.P}/3</b></div><div class="stat"><label>D</label><b>${t.counts.D}/8</b></div><div class="stat"><label>C</label><b>${t.counts.C}/8</b></div><div class="stat"><label>A</label><b>${t.counts.A}/6</b></div></div><h3>Rosa</h3>${roster.length?roster.map(x=>`<div class="lrow" style="grid-template-columns:1fr"><div>${x}</div></div>`).join(""):'<div style="color:#89919c">Nessun acquisto.</div>'}`)}
+window.bonus50=()=>{let h='<div class="sheetHead"><button class="x" onclick="close()">×</button><h2>Assegna +50 crediti</h2></div><select id="ct" class="select">';Object.values(state.teams).forEach((t,i)=>h+=`<option value="${i}">${t.president} — ${t.name} (${t.remainingBudget})</option>`);open(h+'</select><button class="confirm" style="margin-top:12px" onclick="applyBonus50()">ASSEGNA +50</button><button class="cancel" onclick="close()">ANNULLA</button>')}
+window.applyBonus50=()=>{let i=+ct.value,before={teams:JSON.parse(JSON.stringify(state.teams))};state.teams[i].initialBudget+=50;state.teams[i].remainingBudget+=50;state.history.push({type:"credits",before});save();close()}
 undo.onclick=()=>{
  let h=state.history.pop();if(!h)return alert("Niente da annullare");
  if(h.type==="sale"){state.teams=h.before.teams;state.dynamic=h.before.dynamic;state.transferred=h.before.transferred;state.sales=h.before.sales}
@@ -188,11 +194,11 @@ undo.onclick=()=>{
 }
 
 settings.onclick=()=>open(`<button class="x" onclick="close()">×</button><h2>Impostazioni</h2>
-<div class="settings"><button onclick="rosters()">ROSE</button><button onclick="creditsEdit()">MODIFICA CREDITI SQUADRA</button><button onclick="reset()">RESET ASTA</button></div>`)
+<div class="settings"><button onclick="rosters()">ROSE / CREDITI AVVERSARI</button><button onclick="creditsEdit()">MODIFICA CREDITI SQUADRA</button><button onclick="bonus50()">ASSEGNA +50 CREDITI</button><button onclick="reset()">RESET ASTA</button></div>`)
 
 window.rosters=()=>{
- let h='<button class="x" onclick="close()">×</button><h2>Rose</h2>';
- Object.values(state.teams).forEach((t,i)=>h+=`<div class="lrow"><b>${i+1}</b><div><div class="nm">${t.name}</div><small>${t.president} · ${t.remainingBudget} crediti</small></div><div class="mini">P ${t.counts.P}/3 D ${t.counts.D}/8<br>C ${t.counts.C}/8 A ${t.counts.A}/6</div></div>`);
+ let h='<div class="sheetHead"><button class="x" onclick="close()">×</button><h2>Rose e crediti</h2></div>';
+ Object.values(state.teams).forEach((t,i)=>h+=`<div class="lrow" onclick="rivalDetail(${i})"><b>${i+1}</b><div><div class="nm">${t.name}</div><small>${t.president} · ${t.remainingBudget} crediti</small></div><div class="mini">P ${t.counts.P}/3 D ${t.counts.D}/8<br>C ${t.counts.C}/8 A ${t.counts.A}/6</div></div>`);
  open(h)
 }
 window.creditsEdit=()=>{
@@ -205,7 +211,7 @@ window.applyC=()=>{
  state.teams[i].initialBudget+=d;state.teams[i].remainingBudget+=d;state.history.push({type:"credits",before});save();close()
 }
 window.reset=()=>{if(confirm("Reset completo?")&&confirm("Sei sicuro?")){state=fresh();selected=null;q.value="";save();close();render()}}
-window.close=close;footer();render();
+window.close=close;footer();rivalStrip();render();
 
 if("serviceWorker" in navigator){
  addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}))

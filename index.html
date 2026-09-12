@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#07131f">
-<title>EC Salute Asta v2</title>
+<title>EC Salute Asta v2.1</title>
 <link rel="manifest" href="manifest.json">
 <style>
 :root{--bg:#07090d;--card:#14171d;--card2:#0b0e13;--line:#303641;--txt:#f5f7fb;--mut:#858d99;--g:#12b886;--b:#1e9bff;--y:#ffd34d;--red:#ff6484}
@@ -21,12 +21,21 @@ header{position:sticky;top:0;z-index:20;background:#09121c;border-bottom:1px sol
 .empty{text-align:center;color:#89919c;padding:36px 10px}
 .quickbar{position:fixed;left:0;right:0;bottom:147px;z-index:24;background:#0c1117;border-top:1px solid #25303b;border-bottom:1px solid #25303b;padding:7px 10px}.qbi{max-width:430px;margin:auto;display:grid;grid-template-columns:1fr auto;gap:8px}.remainAlways{height:44px;border-radius:12px;border:1px solid #655a22;background:#28230c;color:#ffd34d;font-weight:900;font-size:15px}.bonus50{height:44px;border-radius:12px;border:1px solid #2e6a57;background:#0f2a22;color:#50e0b0;font-weight:900;padding:0 12px}.rivalsWrap{position:fixed;left:0;right:0;bottom:100px;z-index:23;background:#0a0f15;border-top:1px solid #1d2732;padding:5px 8px}.rivals{max-width:430px;margin:auto;display:flex;gap:6px;overflow-x:auto;padding-bottom:2px;scrollbar-width:none}.rivals::-webkit-scrollbar{display:none}.rchip{flex:0 0 auto;border:1px solid #343d48;background:#171c23;color:#fff;border-radius:10px;padding:6px 9px;font-size:11px;line-height:1.15;text-align:left}.rchip b{display:block;font-size:13px}.rchip.topmax{border-color:#c89e2b;box-shadow:0 0 0 1px #c89e2b inset}.rchip small{color:#9aa2ad}.rivalDetail{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}.rivalDetail .stat{min-height:58px}.sheet{width:min(430px,100%);max-height:92vh;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;background:#151922;border:1px solid #39414c;border-radius:22px 22px 0 0;padding:16px 16px calc(18px + env(safe-area-inset-bottom))}.sheetHead{position:sticky;top:-16px;z-index:4;background:#151922;padding:16px 0 8px;margin-top:-16px}.sheetHead .x{background:#151922}.footer{position:fixed;bottom:0;left:0;right:0;z-index:25;background:#070b10f5;border-top:1px solid #25303b;padding:8px 12px calc(8px + env(safe-area-inset-bottom))}.fi{max-width:430px;margin:auto}.ft{display:grid;grid-template-columns:1.2fr repeat(4,1fr);align-items:end;text-align:center}.ft .left{text-align:left}.ft label,.buds label{display:block;color:#717986;font-size:9px;text-transform:uppercase}.ft b{font-size:19px}.left b{font-size:27px;color:#39d7a1}.max{font-size:10px;color:#89919d}.buds{border-top:1px solid #202832;margin-top:7px;padding-top:7px;display:grid;grid-template-columns:repeat(4,1fr);text-align:center}.buds b{font-size:14px}
 .back{display:none;position:fixed;inset:0;background:#000a;z-index:50;align-items:flex-end;justify-content:center}.sheet h2{margin:0 0 10px}.x{float:right;border:0;background:none;color:white;font-size:27px}.price{width:100%;font-size:38px;text-align:center;background:#090c11;color:white;border:1px solid #3d4551;border-radius:14px;padding:10px}.quick{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin:10px 0}.quick button,.teamlist button,.settings button{border:1px solid #39414b;background:#242830;color:white;border-radius:11px}.quick button{height:44px;font-weight:900}.signal{text-align:center;font-weight:900;padding:9px}.confirm{width:100%;height:56px;border:0;border-radius:13px;background:#0ba473;color:white;font-size:18px;font-weight:900}.cancel{width:100%;height:44px;border:1px solid #444c57;border-radius:12px;background:none;color:#d9dee6;margin-top:8px}.teamlist{display:grid;grid-template-columns:1fr 1fr;gap:8px}.teamlist button{padding:10px;text-align:left}.teamlist b{display:block}.teamlist small{color:#9ca4af}.tabs{display:flex;gap:6px;margin-bottom:10px}.tabs button{flex:1;padding:10px;border:1px solid #3b4350;background:#22262d;color:white;border-radius:10px;font-weight:900}.tabs .on{background:#0c75db}.lrow{display:grid;grid-template-columns:25px 1fr auto;gap:8px;padding:10px 2px;border-bottom:1px solid #2b313a;align-items:center}.lrow .nm{font-weight:900}.lrow small{color:#929aa6}.mini{text-align:right;font-size:12px}.settings{display:grid;gap:9px}.settings button{height:48px}.select{width:100%;background:#11161c;color:white;border:1px solid #3d4551;border-radius:12px;padding:12px}
+
+.fullview{display:none;position:fixed;inset:0;z-index:80;background:#0b0f15;color:var(--txt);overflow:hidden}
+.fullview.on{display:flex;flex-direction:column}
+.fullHead{flex:0 0 auto;display:flex;align-items:center;gap:10px;padding:calc(10px + env(safe-area-inset-top)) 14px 10px;background:#121720;border-bottom:1px solid #2c3440}
+.fullHead h2{margin:0;flex:1;font-size:20px}.fullClose{width:44px;height:44px;border:1px solid #3a4350;background:#202630;color:white;border-radius:12px;font-size:25px}
+.fullBody{flex:1 1 auto;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:12px 14px calc(22px + env(safe-area-inset-bottom));touch-action:pan-y}
+.fullBody .tabs{position:sticky;top:0;z-index:3;background:#0b0f15;padding:0 0 10px;margin:0}
+.fullBody .lrow{padding:12px 2px}
+body.full-open{overflow:hidden;position:fixed;width:100%}
 </style>
 </head>
 <body>
 <div class="app">
 <header>
-  <div class="brand"><b>EC SALUTE ASTA</b><small>2026/27 · v2</small></div>
+  <div class="brand"><b>EC SALUTE ASTA</b><small>2026/27 · v2.1</small></div>
   <div class="cred"><small>CREDITI</small><b id="hc">500</b></div>
   <button class="hbtn" id="undo">↶</button>
   <button class="hbtn" id="settings">⚙</button>
@@ -61,6 +70,7 @@ header{position:sticky;top:0;z-index:20;background:#09121c;border-bottom:1px sol
 </div>
 
 <div class="back" id="back"><div class="sheet" id="sheet"></div></div>
+<div class="fullview" id="fullview"><div class="fullHead"><h2 id="fullTitle"></h2><button class="fullClose" onclick="closeFull()">×</button></div><div class="fullBody" id="fullBody"></div></div>
 
 <script src="data.js"></script>
 <script>
@@ -124,6 +134,11 @@ function open(h){sheet.innerHTML=h;back.style.display="flex";sheet.scrollTop=0}
 function close(){back.style.display="none";sheet.innerHTML=""}
 const back=document.getElementById("back"),sheet=document.getElementById("sheet");
 back.onclick=e=>{if(e.target===back)close()}
+const fullview=document.getElementById("fullview"),fullTitle=document.getElementById("fullTitle"),fullBody=document.getElementById("fullBody");
+let fullScrollY=0;
+function openFull(title,html){fullScrollY=window.scrollY;fullTitle.textContent=title;fullBody.innerHTML=html;fullBody.scrollTop=0;fullview.classList.add("on");document.body.classList.add("full-open");document.body.style.top=`-${fullScrollY}px`}
+function closeFull(){fullview.classList.remove("on");fullBody.innerHTML="";document.body.classList.remove("full-open");document.body.style.top="";window.scrollTo(0,fullScrollY)}
+window.closeFull=closeFull;
 
 window.purchase=i=>{
  let p=selected,t=state.teams[i],m=maxBid(t,p.role);
@@ -166,11 +181,15 @@ window.other=()=>{
 
 window.remaining=r=>{
  let a=PLAYERS.filter(p=>p.role===r&&avail(p.id))
- .sort((x,y)=>(parseInt(x.tier.slice(1))-parseInt(y.tier.slice(1)))||(y.score-x.score)||((x.tierPriority||999)-(y.tierPriority||999))).slice(0,15);
- open(`<button class="x" onclick="close()">×</button><h2>★ Migliori rimasti</h2>
- <div class="tabs">${["P","D","C","A"].map(x=>`<button class="${x===r?"on":""}" onclick="remaining('${x}')">${x}</button>`).join("")}</div>
- ${a.map((p,i)=>`<div class="lrow" onclick="pick(${p.id})"><b>${i+1}</b><div><div class="nm">${p.name}</div><small>${p.team} · ${p.tier} · ${p.starter}</small></div><div class="mini">OBJ ${p.target}<br>STOP ${p.stop}</div></div>`).join("")}`)
+ .sort((x,y)=>{
+   const tx=/^F(\d)$/.exec(x.tier||""),ty=/^F(\d)$/.exec(y.tier||"");
+   const xv=tx?+tx[1]:9,yv=ty?+ty[1]:9;
+   return xv-yv||(y.score-x.score)||((x.tierPriority||999)-(y.tierPriority||999))||x.name.localeCompare(y.name,"it")
+ }).slice(0,30);
+ openFull("★ Migliori rimasti",`<div class="tabs">${["P","D","C","A"].map(x=>`<button class="${x===r?"on":""}" onclick="remaining('${x}')">${x}</button>`).join("")}</div>
+ ${a.map((p,i)=>`<div class="lrow" onclick="pickFull(${p.id})"><b>${i+1}</b><div><div class="nm">${p.name}</div><small>${p.team} · ${p.tier||"-"} · ${p.starter||""}</small></div><div class="mini">${/^[234]º$/.test(p.tier||"")?"":`OBJ ${p.target}<br>STOP ${p.stop}`}</div></div>`).join("")}`)
 }
+window.pickFull=id=>{selected=PLAYERS.find(p=>p.id===id);q.value=selected.name;closeFull();render();scrollTo({top:0,behavior:"smooth"})}
 window.pick=id=>{selected=PLAYERS.find(p=>p.id===id);q.value=selected.name;close();render();scrollTo({top:0,behavior:"smooth"})}
 
 function footer(){
@@ -197,10 +216,11 @@ settings.onclick=()=>open(`<button class="x" onclick="close()">×</button><h2>Im
 <div class="settings"><button onclick="rosters()">ROSE / CREDITI AVVERSARI</button><button onclick="creditsEdit()">MODIFICA CREDITI SQUADRA</button><button onclick="bonus50()">ASSEGNA +50 CREDITI</button><button onclick="reset()">RESET ASTA</button></div>`)
 
 window.rosters=()=>{
- let h='<div class="sheetHead"><button class="x" onclick="close()">×</button><h2>Rose e crediti</h2></div>';
- Object.values(state.teams).forEach((t,i)=>h+=`<div class="lrow" onclick="rivalDetail(${i})"><b>${i+1}</b><div><div class="nm">${t.name}</div><small>${t.president} · ${t.remainingBudget} crediti</small></div><div class="mini">P ${t.counts.P}/3 D ${t.counts.D}/8<br>C ${t.counts.C}/8 A ${t.counts.A}/6</div></div>`);
- open(h)
+ let h="";
+ Object.values(state.teams).forEach((t,i)=>h+=`<div class="lrow" onclick="rosterTeam(${i})"><b>${i+1}</b><div><div class="nm">${t.name}</div><small>${t.president} · ${t.remainingBudget} crediti</small></div><div class="mini">P ${t.counts.P}/3 D ${t.counts.D}/8<br>C ${t.counts.C}/8 A ${t.counts.A}/6</div></div>`);
+ openFull("Rose e crediti",h)
 }
+window.rosterTeam=i=>{closeFull();setTimeout(()=>rivalDetail(i),0)}
 window.creditsEdit=()=>{
  let h='<button class="x" onclick="close()">×</button><h2>Modifica crediti</h2><select id="ct" class="select">';
  Object.values(state.teams).forEach((t,i)=>h+=`<option value="${i}">${t.president} — ${t.name}</option>`);
@@ -211,7 +231,7 @@ window.applyC=()=>{
  state.teams[i].initialBudget+=d;state.teams[i].remainingBudget+=d;state.history.push({type:"credits",before});save();close()
 }
 window.reset=()=>{if(confirm("Reset completo?")&&confirm("Sei sicuro?")){state=fresh();selected=null;q.value="";save();close();render()}}
-window.close=close;footer();rivalStrip();render();
+window.close=close;window.closeFull=closeFull;footer();rivalStrip();render();
 
 if("serviceWorker" in navigator){
  addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}))

@@ -1,0 +1,9 @@
+{
+  "name": "EC Salute Asta 2026/27",
+  "short_name": "EC Salute Asta",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#07090d",
+  "theme_color": "#07131f",
+  "icons": []
+}

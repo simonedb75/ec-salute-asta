@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#07131f">
+<title>EC Salute Asta</title>
+<link rel="manifest" href="manifest.json">
+<style>
+:root{--bg:#07090d;--card:#14171d;--card2:#0b0e13;--line:#303641;--txt:#f5f7fb;--mut:#858d99;--g:#12b886;--b:#1e9bff;--y:#ffd34d;--red:#ff6484}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
+body{padding-bottom:165px}.app{max-width:430px;margin:auto;min-height:100vh}
+header{position:sticky;top:0;z-index:20;background:#09121c;border-bottom:1px solid #1f2a34;padding:calc(10px + env(safe-area-inset-top)) 14px 10px;display:flex;gap:10px;align-items:center}
+.brand{flex:1}.brand b{font-size:20px}.brand small{display:block;color:var(--mut);font-size:12px}.cred{text-align:right}.cred small{display:block;color:var(--mut);font-size:10px}.cred b{font-size:25px;color:#39d7a1}
+.hbtn{width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:#11161d;color:white}main{padding:14px}
+.search{position:relative}.search input{width:100%;height:58px;border-radius:16px;border:1px solid #3a414b;background:#15181e;color:white;font-size:21px;padding:0 46px 0 16px}.clear{position:absolute;right:8px;top:8px;width:42px;height:42px;background:none;border:0;color:#8d95a0;font-size:26px}
+.results{display:none;position:absolute;top:63px;left:0;right:0;z-index:30;background:#161a21;border:1px solid #343c47;border-radius:14px;max-height:300px;overflow:auto;box-shadow:0 20px 50px #000a}.res{padding:11px 13px;border-bottom:1px solid #2b313a;display:flex;align-items:center}.res b{display:block}.res small{color:#a1a8b2}.res span{margin-left:auto;font-weight:900}
+.card{margin-top:14px;background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden}.top{padding:15px}.row{display:flex;gap:9px}.pname{font-size:30px;font-weight:900;line-height:1;flex:1}.team{color:var(--mut);margin-top:5px}.badge{padding:8px 10px;border-radius:10px;font-weight:900;border:1px solid #356}.role{color:#4ac4ff;background:#092633}.tier{color:#51e2b2;background:#0d3228}.safe{display:none;margin-top:11px;padding:10px 12px;border:1px solid #147a5b;background:#0b342b;border-radius:12px;color:#43e0ad;font-weight:900}
+.grid{border-top:1px solid #2b313a;padding:11px;display:grid;grid-template-columns:1fr 1fr;gap:9px}.stat{background:var(--card2);border-radius:12px;padding:9px 11px;min-height:65px}.stat label{display:block;font-size:10px;color:#747c88;text-transform:uppercase;letter-spacing:.8px}.stat b{font-size:23px;display:block;margin-top:3px}.score{color:#39d7a1}.note{grid-column:1/-1;min-height:0}
+.actions{display:grid;gap:9px;margin-top:13px}.big{height:58px;border-radius:14px;border:1px solid #3a424d;background:#262a31;color:white;font-size:19px;font-weight:900}.mine{background:#0da878;border-color:#0da878}.remain{color:var(--y)}
+.empty{text-align:center;color:#89919c;padding:36px 10px}
+.footer{position:fixed;bottom:0;left:0;right:0;z-index:25;background:#070b10f5;border-top:1px solid #25303b;padding:8px 12px calc(8px + env(safe-area-inset-bottom))}.fi{max-width:430px;margin:auto}.ft{display:grid;grid-template-columns:1.2fr repeat(4,1fr);align-items:end;text-align:center}.ft .left{text-align:left}.ft label,.buds label{display:block;color:#717986;font-size:9px;text-transform:uppercase}.ft b{font-size:19px}.left b{font-size:27px;color:#39d7a1}.max{font-size:10px;color:#89919d}.buds{border-top:1px solid #202832;margin-top:7px;padding-top:7px;display:grid;grid-template-columns:repeat(4,1fr);text-align:center}.buds b{font-size:14px}
+.back{display:none;position:fixed;inset:0;background:#000a;z-index:50;align-items:flex-end;justify-content:center}.sheet{width:min(430px,100%);max-height:92vh;overflow:auto;background:#151922;border:1px solid #39414c;border-radius:22px 22px 0 0;padding:16px 16px calc(18px + env(safe-area-inset-bottom))}.sheet h2{margin:0 0 10px}.x{float:right;border:0;background:none;color:white;font-size:27px}.price{width:100%;font-size:38px;text-align:center;background:#090c11;color:white;border:1px solid #3d4551;border-radius:14px;padding:10px}.quick{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin:10px 0}.quick button,.teamlist button,.settings button{border:1px solid #39414b;background:#242830;color:white;border-radius:11px}.quick button{height:44px;font-weight:900}.signal{text-align:center;font-weight:900;padding:9px}.confirm{width:100%;height:56px;border:0;border-radius:13px;background:#0ba473;color:white;font-size:18px;font-weight:900}.cancel{width:100%;height:44px;border:1px solid #444c57;border-radius:12px;background:none;color:#d9dee6;margin-top:8px}.teamlist{display:grid;grid-template-columns:1fr 1fr;gap:8px}.teamlist button{padding:10px;text-align:left}.teamlist b{display:block}.teamlist small{color:#9ca4af}.tabs{display:flex;gap:6px;margin-bottom:10px}.tabs button{flex:1;padding:10px;border:1px solid #3b4350;background:#22262d;color:white;border-radius:10px;font-weight:900}.tabs .on{background:#0c75db}.lrow{display:grid;grid-template-columns:25px 1fr auto;gap:8px;padding:10px 2px;border-bottom:1px solid #2b313a;align-items:center}.lrow .nm{font-weight:900}.lrow small{color:#929aa6}.mini{text-align:right;font-size:12px}.settings{display:grid;gap:9px}.settings button{height:48px}.select{width:100%;background:#11161c;color:white;border:1px solid #3d4551;border-radius:12px;padding:12px}
+</style>
+</head>
+<body>
+<div class="app">
+<header>
+  <div class="brand"><b>EC SALUTE ASTA</b><small>2026/27</small></div>
+  <div class="cred"><small>CREDITI</small><b id="hc">500</b></div>
+  <button class="hbtn" id="undo">↶</button>
+  <button class="hbtn" id="settings">⚙</button>
+</header>
+
+<main>
+  <div class="search">
+    <input id="q" placeholder="Cerca giocatore..." autocomplete="off">
+    <button class="clear" id="clr">×</button>
+    <div class="results" id="results"></div>
+  </div>
+  <div id="pa"><div class="empty">Cerca un giocatore per iniziare.</div></div>
+</main>
+
+<div class="footer"><div class="fi">
+  <div class="ft">
+    <div class="left"><label>crediti</label><b id="credits">500</b><div class="max">MAX <strong id="max">476</strong></div></div>
+    <div><label>P</label><b id="sP">0/3</b></div>
+    <div><label>D</label><b id="sD">0/8</b></div>
+    <div><label>C</label><b id="sC">0/8</b></div>
+    <div><label>A</label><b id="sA">0/6</b></div>
+  </div>
+  <div class="buds">
+    <div><label>P</label><b id="bP">0/30</b></div>
+    <div><label>D</label><b id="bD">0/75</b></div>
+    <div><label>C</label><b id="bC">0/105</b></div>
+    <div><label>A</label><b id="bA">0/290</b></div>
+  </div>
+</div></div>
+</div>
+
+<div class="back" id="back"><div class="sheet" id="sheet"></div></div>
+
+<script src="data.js"></script>
+<script>
+const RM={P:3,D:8,C:8,A:6},RB={P:30,D:75,C:105,A:290},KEY="ecsalute_local_v1";
+let selected=null,state=load();
+
+function fresh(){
+ let ts={};
+ TEAMS.forEach((t,i)=>ts[i]={...t,initialBudget:500,remainingBudget:500,counts:{P:0,D:0,C:0,A:0},spent:{P:0,D:0,C:0,A:0},players:[]});
+ return{teams:ts,sales:{},history:[],dynamic:{...RB},transferred:{P:false,D:false,C:false}};
+}
+function load(){try{return JSON.parse(localStorage.getItem(KEY))||fresh()}catch(e){return fresh()}}
+function save(){localStorage.setItem(KEY,JSON.stringify(state));footer()}
+function user(){return state.teams[0]}
+function slots(t){return Object.keys(RM).reduce((a,r)=>a+RM[r]-t.counts[r],0)}
+function maxBid(t,r){if(t.counts[r]>=RM[r])return 0;return Math.max(0,t.remainingBudget-(slots(t)-1))}
+function avail(id){return !state.sales[id]}
+function norm(s){return(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase()}
+
+const q=document.getElementById("q"),results=document.getElementById("results"),pa=document.getElementById("pa");
+function matches(s){
+ s=norm(s).trim();if(!s)return[];
+ return PLAYERS.filter(p=>avail(p.id)&&norm(p.name).includes(s))
+ .sort((a,b)=>{let x=norm(a.name).startsWith(s)?0:1,y=norm(b.name).startsWith(s)?0:1;return x-y||a.name.localeCompare(b.name,"it")})
+ .slice(0,12)
+}
+function show(){
+ let a=matches(q.value);
+ if(!q.value){results.style.display="none";return}
+ results.innerHTML=a.length?a.map(p=>`<div class="res" data-id="${p.id}"><div><b>${p.name}</b><small>${p.team} · ${p.role}</small></div><span>${p.tier}</span></div>`).join(""):`<div class="res">Nessun giocatore libero</div>`;
+ results.style.display="block";
+ results.querySelectorAll("[data-id]").forEach(e=>e.onclick=()=>{selected=PLAYERS.find(p=>p.id==e.dataset.id);q.value=selected.name;results.style.display="none";render()})
+}
+q.oninput=show;q.onfocus=show;
+document.getElementById("clr").onclick=()=>{q.value="";selected=null;results.style.display="none";render()}
+
+function render(){
+ if(!selected){pa.innerHTML='<div class="empty">Cerca un giocatore per iniziare.</div>';return}
+ let p=selected;
+ pa.innerHTML=`<div class="card"><div class="top"><div class="row">
+ <div><div class="pname">${p.name}</div><div class="team">${p.team} · ${p.role}</div></div>
+ <div class="badge role">${p.role}</div><div class="badge tier">${p.tier}</div></div>
+ <div class="safe" style="${p.starter==="T1"?"display:block":""}">✓ TITOLARE SICURO</div></div>
+ <div class="grid">
+ <div class="stat"><label>Titolarità</label><b>${p.starter||"-"}</b></div>
+ <div class="stat"><label>Fascia</label><b>${p.tier||"-"}</b></div>
+ <div class="stat"><label>Prezzo obiettivo</label><b>${p.target??"-"}</b></div>
+ <div class="stat"><label>Stop massimo</label><b>${p.stop??"-"}</b></div>
+ <div class="stat"><label>REV5 ADV Score</label><b class="score">${p.score??"-"}</b></div>
+ <div class="stat"><label>Profilo</label><b>${p.profile||"-"}</b></div>
+ ${p.note?`<div class="stat note"><label>Nota</label><b style="font-size:14px">${p.note}</b></div>`:""}
+ </div></div>
+ <div class="actions">
+ <button class="big mine" onclick="purchase(0)">LO PRENDO IO</button>
+ <button class="big" onclick="other()">ALTRA SQUADRA</button>
+ <button class="big remain" onclick="remaining('${p.role}')">★ MIGLIORI RIMASTI</button>
+ </div>`
+}
+
+function open(h){sheet.innerHTML=h;back.style.display="flex"}
+function close(){back.style.display="none"}
+const back=document.getElementById("back"),sheet=document.getElementById("sheet");
+back.onclick=e=>{if(e.target===back)close()}
+
+window.purchase=i=>{
+ let p=selected,t=state.teams[i],m=maxBid(t,p.role);
+ open(`<button class="x" onclick="close()">×</button><h2>${i===0?"Lo prendo io":t.name}</h2>
+ <div style="color:#b9c0ca;margin-bottom:10px"><b>${p.name}</b> · ${p.team} · ${p.role}<br>${p.tier} · ${p.starter} · OBJ ${p.target} · STOP ${p.stop}<br>MAX OFFERTA ${m}</div>
+ <input id="price" class="price" inputmode="numeric" value="1">
+ <div class="quick"><button onclick="bump(1)">+1</button><button onclick="bump(2)">+2</button><button onclick="bump(5)">+5</button><button onclick="bump(10)">+10</button></div>
+ <div class="signal" id="signal"></div>
+ <button class="confirm" onclick="confirmSale(${i})">CONFERMA</button>
+ <button class="cancel" onclick="close()">ANNULLA</button>`);
+ document.getElementById("price").oninput=signal;signal()
+}
+window.bump=n=>{let x=document.getElementById("price");x.value=(parseInt(x.value||0)+n);signal()}
+function signal(){
+ let v=parseInt(document.getElementById("price")?.value||0),s=document.getElementById("signal");if(!s)return;
+ if(v<=selected.target){s.textContent="IN OBIETTIVO";s.style.color="#45e0ae"}
+ else if(v<=selected.stop){s.textContent="SOPRA OBIETTIVO";s.style.color="#ffd166"}
+ else{s.textContent="OLTRE STOP";s.style.color="#ff6484"}
+}
+window.confirmSale=i=>{
+ let p=selected,t=state.teams[i],price=parseInt(document.getElementById("price").value||0);
+ if(!price||price<1)return alert("Prezzo non valido");
+ if(t.counts[p.role]>=RM[p.role])return alert("SLOT RUOLO COMPLETO");
+ let mb=maxBid(t,p.role);if(price>mb)return alert("Massimo spendibile: "+mb);
+ let before=JSON.parse(JSON.stringify({teams:state.teams,dynamic:state.dynamic,transferred:state.transferred,sales:state.sales}));
+ t.remainingBudget-=price;t.counts[p.role]++;t.spent[p.role]+=price;t.players.push({playerId:p.id,price});
+ state.sales[p.id]={teamId:i,price};
+ if(i===0&&["P","D","C"].includes(p.role)&&t.counts[p.role]===RM[p.role]&&!state.transferred[p.role]){
+   state.dynamic.A+=RB[p.role]-t.spent[p.role];state.transferred[p.role]=true
+ }
+ state.history.push({type:"sale",before});
+ selected=null;q.value="";close();save();render()
+}
+
+window.other=()=>{
+ let h='<button class="x" onclick="close()">×</button><h2>Altra squadra</h2><div class="teamlist">';
+ for(let i=1;i<TEAMS.length;i++)h+=`<button onclick="purchase(${i})"><b>${state.teams[i].president}</b><small>${state.teams[i].name}</small></button>`;
+ open(h+'</div>')
+}
+
+window.remaining=r=>{
+ let a=PLAYERS.filter(p=>p.role===r&&avail(p.id))
+ .sort((x,y)=>(parseInt(x.tier.slice(1))-parseInt(y.tier.slice(1)))||(y.score-x.score)||((x.tierPriority||999)-(y.tierPriority||999))).slice(0,15);
+ open(`<button class="x" onclick="close()">×</button><h2>★ Migliori rimasti</h2>
+ <div class="tabs">${["P","D","C","A"].map(x=>`<button class="${x===r?"on":""}" onclick="remaining('${x}')">${x}</button>`).join("")}</div>
+ ${a.map((p,i)=>`<div class="lrow" onclick="pick(${p.id})"><b>${i+1}</b><div><div class="nm">${p.name}</div><small>${p.team} · ${p.tier} · ${p.starter}</small></div><div class="mini">OBJ ${p.target}<br>STOP ${p.stop}</div></div>`).join("")}`)
+}
+window.pick=id=>{selected=PLAYERS.find(p=>p.id===id);q.value=selected.name;close();render();scrollTo({top:0,behavior:"smooth"})}
+
+function footer(){
+ let t=user();hc.textContent=t.remainingBudget;credits.textContent=t.remainingBudget;
+ max.textContent=Math.max(0,t.remainingBudget-Math.max(0,slots(t)-1));
+ ["P","D","C","A"].forEach(r=>{
+   document.getElementById("s"+r).textContent=`${t.counts[r]}/${RM[r]}`;
+   document.getElementById("b"+r).textContent=`${t.spent[r]}/${state.dynamic[r]}`
+ })
+}
+
+undo.onclick=()=>{
+ let h=state.history.pop();if(!h)return alert("Niente da annullare");
+ if(h.type==="sale"){state.teams=h.before.teams;state.dynamic=h.before.dynamic;state.transferred=h.before.transferred;state.sales=h.before.sales}
+ else state.teams=h.before.teams;
+ save();render()
+}
+
+settings.onclick=()=>open(`<button class="x" onclick="close()">×</button><h2>Impostazioni</h2>
+<div class="settings"><button onclick="rosters()">ROSE</button><button onclick="creditsEdit()">MODIFICA CREDITI SQUADRA</button><button onclick="reset()">RESET ASTA</button></div>`)
+
+window.rosters=()=>{
+ let h='<button class="x" onclick="close()">×</button><h2>Rose</h2>';
+ Object.values(state.teams).forEach((t,i)=>h+=`<div class="lrow"><b>${i+1}</b><div><div class="nm">${t.name}</div><small>${t.president} · ${t.remainingBudget} crediti</small></div><div class="mini">P ${t.counts.P}/3 D ${t.counts.D}/8<br>C ${t.counts.C}/8 A ${t.counts.A}/6</div></div>`);
+ open(h)
+}
+window.creditsEdit=()=>{
+ let h='<button class="x" onclick="close()">×</button><h2>Modifica crediti</h2><select id="ct" class="select">';
+ Object.values(state.teams).forEach((t,i)=>h+=`<option value="${i}">${t.president} — ${t.name}</option>`);
+ open(h+'</select><input id="delta" class="price" style="margin-top:10px" inputmode="numeric" value="50"><button class="confirm" style="margin-top:10px" onclick="applyC()">CONFERMA</button>')
+}
+window.applyC=()=>{
+ let i=+ct.value,d=parseInt(delta.value||0),before={teams:JSON.parse(JSON.stringify(state.teams))};
+ state.teams[i].initialBudget+=d;state.teams[i].remainingBudget+=d;state.history.push({type:"credits",before});save();close()
+}
+window.reset=()=>{if(confirm("Reset completo?")&&confirm("Sei sicuro?")){state=fresh();selected=null;q.value="";save();close();render()}}
+window.close=close;footer();render();
+
+if("serviceWorker" in navigator){
+ addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}))
+}
+</script>
+</body>
+</html>

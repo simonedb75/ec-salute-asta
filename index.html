@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#07131f">
-<title>EC Salute Asta v2.1</title>
+<title>EC Salute Asta v2.2</title>
 <link rel="manifest" href="manifest.json">
 <style>
 :root{--bg:#07090d;--card:#14171d;--card2:#0b0e13;--line:#303641;--txt:#f5f7fb;--mut:#858d99;--g:#12b886;--b:#1e9bff;--y:#ffd34d;--red:#ff6484}
@@ -30,18 +30,37 @@ header{position:sticky;top:0;z-index:20;background:#09121c;border-bottom:1px sol
 .fullBody .tabs{position:sticky;top:0;z-index:3;background:#0b0f15;padding:0 0 10px;margin:0}
 .fullBody .lrow{padding:12px 2px}
 body.full-open{overflow:hidden;position:fixed;width:100%}
+
+/* v2.2 dashboard layout */
+body{padding-bottom:150px}.app{max-width:980px}.bonusTop{height:44px;border-radius:12px;border:1px solid #14865f;background:#0a2b22;color:#43e0ad;font-weight:900;padding:0 15px;font-size:14px;white-space:nowrap}
+main{padding:10px 12px 14px}.dashPanel{border-radius:15px;margin-bottom:10px;padding:8px;border:1px solid #39414c;background:#0b1118}.bestPanel{border-color:#a98200;background:linear-gradient(90deg,#18170b,#0b1118)}.teamsPanel{border-color:#168be8;background:linear-gradient(90deg,#071824,#0b1118)}
+.panelHead{display:flex;align-items:center;gap:8px;margin-bottom:7px;color:#ffd34d}.panelHead.blue{color:#38a8ff}.panelHead>b{font-size:15px;letter-spacing:.2px}.panelHead span{font-size:12px}.panelLink{margin-left:auto;border:0;background:none;color:#38a8ff;font-size:28px;line-height:1}
+.miniTabs{display:flex;gap:5px;margin-left:auto}.miniTabs button{min-width:34px;height:30px;border-radius:8px;border:1px solid #425061;background:#111a24;color:#cbd3dd;font-weight:800}.miniTabs button.on{background:#147be0;color:#fff;border-color:#147be0}
+.bestGrid{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:5px}.bestItem{min-width:0;border:1px solid #294055;border-radius:8px;background:#09131d;padding:5px 3px;text-align:center}.bestItem .rank{font-size:9px;color:#9fc4e7}.bestItem b{display:block;font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin:3px 0}.bestItem small{display:block;color:#aeb8c5;font-size:9px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.bestItem .r{display:inline-block;margin-top:4px;padding:2px 5px;border-radius:4px;font-size:9px;font-weight:900}.bestItem .val{display:block;color:#ffd34d;font-size:12px;font-weight:900;margin-top:3px}
+.teamsGrid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:5px}.teamTile{min-width:0;border:1px solid #38516a;border-radius:8px;background:#0b151f;padding:6px 4px;text-align:center}.teamTile.me{border-color:#1bd697;background:#09241e}.teamTile b{display:block;font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.teamTile .money{font-size:15px;font-weight:900}.teamTile.me .money{color:#42e2ad}.teamTile small{font-size:8px;color:#9ca8b6}.teamCounts{border-top:1px solid #263746;margin-top:4px;padding-top:4px;display:grid;grid-template-columns:repeat(4,1fr);font-size:8px}.teamCounts strong{display:block;font-size:9px}
+.search input{height:52px;font-size:18px}.footer{padding-top:6px}.quickbar,.rivalsWrap{display:none!important}
+@media(max-width:600px){header{padding-left:10px;padding-right:10px;gap:6px}.brand b{font-size:17px}.brand small{font-size:10px}.bonusTop{height:40px;padding:0 8px;font-size:10px}.hbtn{width:40px;height:40px}.cred b{font-size:22px}.cred small{font-size:8px}.bestGrid{gap:3px}.bestItem{padding:4px 2px}.bestItem b{font-size:8px}.bestItem small{font-size:7px}.bestItem .val{font-size:10px}.teamsGrid{gap:3px}.teamTile{padding:5px 2px}.teamTile b{font-size:8px}.teamTile .money{font-size:13px}.panelHead>b{font-size:13px}.miniTabs button{min-width:29px;height:27px;padding:0 6px}}
 </style>
 </head>
 <body>
 <div class="app">
 <header>
-  <div class="brand"><b>EC SALUTE ASTA</b><small>2026/27 · v2.1</small></div>
+  <div class="brand"><b>EC SALUTE ASTA</b><small>2026/27 · v2.2</small></div>
+  <button class="bonusTop" onclick="bonus50()">+50 CREDITI</button>
   <div class="cred"><small>CREDITI</small><b id="hc">500</b></div>
   <button class="hbtn" id="undo">↶</button>
   <button class="hbtn" id="settings">⚙</button>
 </header>
 
 <main>
+  <section class="dashPanel bestPanel">
+    <div class="panelHead"><b>★ MIGLIORI RIMASTI <span>(TOP 10)</span></b><div class="miniTabs" id="homeBestTabs"></div></div>
+    <div class="bestGrid" id="homeBest"></div>
+  </section>
+  <section class="dashPanel teamsPanel">
+    <div class="panelHead blue"><b>👥 ROSE E CREDITI</b><button class="panelLink" onclick="rosters()">›</button></div>
+    <div class="teamsGrid" id="homeTeams"></div>
+  </section>
   <div class="search">
     <input id="q" placeholder="Cerca giocatore..." autocomplete="off">
     <button class="clear" id="clr">×</button>
@@ -50,8 +69,7 @@ body.full-open{overflow:hidden;position:fixed;width:100%}
   <div id="pa"><div class="empty">Cerca un giocatore per iniziare.</div></div>
 </main>
 
-<div class="quickbar"><div class="qbi"><button class="remainAlways" onclick="remaining('P')">★ MIGLIORI RIMASTI</button><button class="bonus50" onclick="bonus50()">+50</button></div></div>
-<div class="rivalsWrap"><div class="rivals" id="rivals"></div></div>
+<div id="rivals" style="display:none"></div>
 <div class="footer"><div class="fi">
   <div class="ft">
     <div class="left"><label>crediti</label><b id="credits">500</b><div class="max">MAX <strong id="max">476</strong></div></div>
@@ -75,7 +93,7 @@ body.full-open{overflow:hidden;position:fixed;width:100%}
 <script src="data.js"></script>
 <script>
 const RM={P:3,D:8,C:8,A:6},RB={P:30,D:75,C:105,A:290},KEY="ecsalute_local_v2";
-let selected=null,state=load();
+let selected=null,state=load(),homeBestRole="A";
 
 function fresh(){
  let ts={};
@@ -83,7 +101,7 @@ function fresh(){
  return{teams:ts,sales:{},history:[],dynamic:{...RB},transferred:{P:false,D:false,C:false}};
 }
 function load(){try{let v2=JSON.parse(localStorage.getItem(KEY));if(v2)return v2;let v1=JSON.parse(localStorage.getItem("ecsalute_local_v1"));return v1||fresh()}catch(e){return fresh()}}
-function save(){localStorage.setItem(KEY,JSON.stringify(state));footer();rivalStrip()}
+function save(){localStorage.setItem(KEY,JSON.stringify(state));footer();rivalStrip();renderDashboard()}
 function user(){return state.teams[0]}
 function slots(t){return Object.keys(RM).reduce((a,r)=>a+RM[r]-t.counts[r],0)}
 function maxBid(t,r){if(t.counts[r]>=RM[r])return 0;return Math.max(0,t.remainingBudget-(slots(t)-1))}
@@ -201,6 +219,21 @@ function footer(){
  })
 }
 
+function roleColor(r){return r==="A"?"#df2735":r==="C"?"#0aa86e":r==="D"?"#147cf0":"#8c63ff"}
+function renderDashboard(){
+ const tabs=document.getElementById("homeBestTabs"),best=document.getElementById("homeBest"),teams=document.getElementById("homeTeams");
+ if(!tabs||!best||!teams)return;
+ tabs.innerHTML=["P","D","C","A"].map(r=>`<button class="${r===homeBestRole?"on":""}" onclick="setHomeBest('${r}')">${r}</button>`).join("");
+ let a=PLAYERS.filter(p=>p.role===homeBestRole&&avail(p.id)).sort((x,y)=>{
+   const tx=/^F(\d)$/.exec(x.tier||""),ty=/^F(\d)$/.exec(y.tier||"");const xv=tx?+tx[1]:9,yv=ty?+ty[1]:9;
+   return xv-yv||(y.score-x.score)||((x.tierPriority||999)-(y.tierPriority||999))||x.name.localeCompare(y.name,"it")
+ }).slice(0,10);
+ best.innerHTML=a.map((p,i)=>`<div class="bestItem" onclick="pickHome(${p.id})"><span class="rank">${i+1}</span><b>${p.name}</b><small>${p.team}</small><span class="r" style="background:${roleColor(p.role)}">${p.role}</span><span class="val">${/^[234]º$/.test(p.tier||"")?p.tier:(p.target??"-")}</span></div>`).join("");
+ teams.innerHTML=Object.values(state.teams).map((t,i)=>{let m=Math.max(0,t.remainingBudget-Math.max(0,slots(t)-1));return `<div class="teamTile ${i===0?"me":""}" onclick="rivalDetail(${i})"><b>${t.president}</b><div class="money">${t.remainingBudget}</div><small>MAX ${m}</small><div class="teamCounts">${["P","D","C","A"].map(r=>`<span>${r}<strong>${t.counts[r]}/${RM[r]}</strong></span>`).join("")}</div></div>`}).join("");
+}
+window.setHomeBest=r=>{homeBestRole=r;renderDashboard()}
+window.pickHome=id=>{selected=PLAYERS.find(p=>p.id===id);q.value=selected.name;render();window.scrollTo({top:document.querySelector(".search").offsetTop-70,behavior:"smooth"})}
+
 function rivalStrip(){const arr=Object.entries(state.teams).filter(([i])=>+i!==0);let high=Math.max(...arr.map(([i,t])=>Math.max(0,t.remainingBudget-Math.max(0,slots(t)-1))));const el=document.getElementById("rivals");el.innerHTML=arr.map(([i,t])=>{let m=Math.max(0,t.remainingBudget-Math.max(0,slots(t)-1));return `<button class="rchip ${m===high?"topmax":""}" onclick="rivalDetail(${i})"><b>${t.president} ${t.remainingBudget}</b><small>MAX ${m}</small></button>`}).join("")}
 window.rivalDetail=i=>{let t=state.teams[i],m=Math.max(0,t.remainingBudget-Math.max(0,slots(t)-1));let roster=t.players.map(x=>{let p=PLAYERS.find(z=>z.id===x.playerId);return p?`${p.name} (${p.role}) · ${x.price}`:""}).filter(Boolean);open(`<div class="sheetHead"><button class="x" onclick="close()">×</button><h2>${t.name}</h2></div><div style="color:#9da5b0">${t.president}</div><div class="rivalDetail"><div class="stat"><label>Crediti</label><b>${t.remainingBudget}</b></div><div class="stat"><label>MAX offerta</label><b>${m}</b></div><div class="stat"><label>P</label><b>${t.counts.P}/3</b></div><div class="stat"><label>D</label><b>${t.counts.D}/8</b></div><div class="stat"><label>C</label><b>${t.counts.C}/8</b></div><div class="stat"><label>A</label><b>${t.counts.A}/6</b></div></div><h3>Rosa</h3>${roster.length?roster.map(x=>`<div class="lrow" style="grid-template-columns:1fr"><div>${x}</div></div>`).join(""):'<div style="color:#89919c">Nessun acquisto.</div>'}`)}
 window.bonus50=()=>{let h='<div class="sheetHead"><button class="x" onclick="close()">×</button><h2>Assegna +50 crediti</h2></div><select id="ct" class="select">';Object.values(state.teams).forEach((t,i)=>h+=`<option value="${i}">${t.president} — ${t.name} (${t.remainingBudget})</option>`);open(h+'</select><button class="confirm" style="margin-top:12px" onclick="applyBonus50()">ASSEGNA +50</button><button class="cancel" onclick="close()">ANNULLA</button>')}
@@ -231,7 +264,7 @@ window.applyC=()=>{
  state.teams[i].initialBudget+=d;state.teams[i].remainingBudget+=d;state.history.push({type:"credits",before});save();close()
 }
 window.reset=()=>{if(confirm("Reset completo?")&&confirm("Sei sicuro?")){state=fresh();selected=null;q.value="";save();close();render()}}
-window.close=close;window.closeFull=closeFull;footer();rivalStrip();render();
+window.close=close;window.closeFull=closeFull;footer();rivalStrip();renderDashboard();render();
 
 if("serviceWorker" in navigator){
  addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}))

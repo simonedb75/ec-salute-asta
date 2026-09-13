@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#07131f">
-<title>EC Salute Asta v2.3</title>
+<title>EC Salute Asta v2.4</title>
 <link rel="manifest" href="manifest.json">
 <style>
 :root{--bg:#07090d;--card:#14171d;--card2:#0b0e13;--line:#303641;--txt:#f5f7fb;--mut:#858d99;--g:#12b886;--b:#1e9bff;--y:#ffd34d;--red:#ff6484}
@@ -32,7 +32,7 @@ header{position:sticky;top:0;z-index:20;background:#09121c;border-bottom:1px sol
 body.full-open{overflow:hidden;position:fixed;width:100%}
 
 /* v2.3 definitive iPhone layout */
-body{padding-bottom:104px}
+body{padding-bottom:18px}
 .app{max-width:430px;margin:auto;min-height:100vh}
 header{position:sticky;top:0;z-index:20;background:#07131f;border-bottom:1px solid #20303d;padding:calc(8px + env(safe-area-inset-top)) 10px 8px;display:grid;grid-template-columns:minmax(0,1fr) 104px 54px 40px 40px;gap:6px;align-items:center}
 .brand{min-width:0}.brand b{display:block;font-size:17px;line-height:1.05;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.brand small{display:block;color:#8c96a4;font-size:10px;margin-top:4px}
@@ -43,15 +43,15 @@ main{padding:9px 10px 12px}
 .dashPanel{border-radius:15px;margin-bottom:9px;padding:8px;background:#091119}.bestPanel{border:1px solid #c89a00;background:linear-gradient(90deg,#17180d,#091119)}.teamsPanel{border:1px solid #1299f6;background:linear-gradient(90deg,#071822,#091119)}
 .panelHead{display:flex;align-items:center;gap:6px;margin-bottom:7px;color:#ffd34d;min-height:29px}.panelHead.blue{color:#32a9ff}.panelHead>b{font-size:13px;line-height:1;white-space:nowrap}.panelHead span{font-size:10px}.panelLink{margin-left:auto;border:0;background:none;color:#32a9ff;font-size:26px;line-height:1;padding:0 2px}
 .miniTabs{display:flex;gap:4px;margin-left:auto}.miniTabs button{min-width:31px;height:29px;padding:0 7px;border-radius:8px;border:1px solid #3f5264;background:#101a24;color:#c8d1db;font-size:11px;font-weight:900}.miniTabs button.on{background:#137fe6;color:white;border-color:#137fe6}
-.bestGrid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:5px}.bestItem{min-width:0;border:1px solid #2a4962;border-radius:9px;background:#09141e;padding:5px 3px;text-align:center}.bestItem .rank{display:block;font-size:8px;color:#8fb4d2}.bestItem b{display:block;font-size:9px;line-height:1.05;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin:3px 0}.bestItem small{display:block;color:#9ba8b5;font-size:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.bestItem .r{display:inline-block;margin-top:4px;padding:2px 5px;border-radius:4px;font-size:8px;font-weight:900;color:white}.bestItem .tierMini{display:block;margin-top:3px;color:#dce6ef;font-size:9px;font-weight:900}
-.teamsGrid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:4px}.teamTile{min-width:0;overflow:hidden;border:1px solid #35536a;border-radius:8px;background:#0a151f;padding:5px 2px;text-align:center}.teamTile.me{border-color:#1bd697;background:#09261e}.teamTile b{display:block;font-size:7.5px;line-height:1.05;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.teamTile .money{font-size:13px;line-height:1.1;font-weight:900;margin-top:2px}.teamTile.me .money{color:#45e2b0}.teamTile small{display:block;color:#99a7b5;font-size:6px;white-space:nowrap;margin-top:1px}.teamCounts{border-top:1px solid #274253;margin-top:4px;padding-top:3px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px}.teamCounts span{min-width:0;font-size:5.5px;line-height:1.05;color:#b8c5d0;white-space:nowrap}.teamCounts strong{display:block;color:#f4f7fa;font-size:6.5px;line-height:1.05}
+.bestGrid{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:3px}.bestItem{min-width:0;border:1px solid #2a4962;border-radius:8px;background:#09141e;padding:4px 2px 5px;text-align:center}.bestItem .rank{display:block;font-size:7px;color:#8fb4d2}.bestItem b{display:block;font-size:7px;line-height:1.05;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin:2px 0}.bestItem small{display:block;color:#9ba8b5;font-size:6.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.bestItem .r{display:inline-block;margin-top:3px;padding:2px 4px;border-radius:4px;font-size:7px;font-weight:900;color:white}.bestItem .tierMini{display:none!important}
+.teamsGrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px}.teamTile{min-width:0;overflow:hidden;border:1px solid #35536a;border-radius:9px;background:#0a151f;padding:6px 4px;text-align:center}.teamTile.me{border-color:#1bd697;background:#09261e}.teamTile b{display:block;font-size:9px;line-height:1.05;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.teamTile .money{font-size:16px;line-height:1.1;font-weight:900;margin-top:2px}.teamTile.me .money{color:#45e2b0}.teamTile small{display:block;color:#99a7b5;font-size:7px;white-space:nowrap;margin-top:2px}.teamCounts{border-top:1px solid #274253;margin-top:4px;padding-top:3px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px}.teamCounts span{min-width:0;font-size:6.5px;line-height:1.05;color:#b8c5d0;white-space:nowrap}.teamCounts strong{display:block;color:#f4f7fa;font-size:8px;line-height:1.05}
 .auctionZone{border:1px solid #c89a00;border-radius:15px;background:#0b1118;padding:8px;margin-bottom:8px}.auctionSearch{display:grid;grid-template-columns:1fr 112px;gap:6px;margin-bottom:8px}.search{position:relative;margin:0}.search input{width:100%;height:46px;border-radius:10px;border:1px solid #3a4958;background:#111a24;color:#fff;font-size:16px;padding:0 40px 0 13px}.clear{position:absolute;right:4px;top:2px;width:38px;height:38px;border:0;background:none;color:#95a0ad;font-size:24px}.roleHint{height:46px;border:1px solid #3a4958;background:#111a24;color:#dce5ed;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800}.results{display:none;position:absolute;top:50px;left:0;right:0;z-index:40;background:#161d25;border:1px solid #394857;border-radius:10px;max-height:260px;overflow:auto;box-shadow:0 18px 40px #000b}.res{padding:9px 11px;border-bottom:1px solid #293541;display:flex;align-items:center}.res b{display:block;font-size:13px}.res small{color:#9ca7b3;font-size:10px}.res span{margin-left:auto;font-weight:900;font-size:11px}
 #pa{min-height:230px}.empty{height:230px;display:flex;align-items:center;justify-content:center;text-align:center;color:#7f8995;padding:20px}.playerWorkspace{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,.9fr);gap:7px;min-height:230px}.strategyCard,.soldCard{border:1px solid #344553;border-radius:12px;background:#0b151f;min-width:0}.strategyCard{padding:9px}
 .playerHead{display:flex;align-items:flex-start;gap:7px;margin-bottom:8px}.playerTitle{min-width:0;flex:1}.playerTitle b{display:block;font-size:17px;line-height:1.05;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.playerTitle small{display:block;color:#9ba6b2;font-size:10px;margin-top:3px}.badgesInline{display:flex;gap:5px;margin-top:7px}.badgesInline .badge{padding:5px 7px;border-radius:7px;font-size:10px}
 .strategyTitle{color:#55d7ef;font-size:10px;font-weight:900;margin:7px 0}.strategyGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}.strategyStat{background:#09121b;border:1px solid #263848;border-radius:8px;padding:6px;min-height:52px}.strategyStat label{display:block;color:#93a1af;font-size:7px;line-height:1.05}.strategyStat b{display:block;font-size:14px;margin-top:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.strategyStat .good{color:#42e2ad}.strategyStat .warn{color:#ffd34d}.strategyNote{margin-top:6px;border:1px solid #263848;border-radius:8px;background:#09121b;padding:7px;color:#aeb9c4;font-size:9px;line-height:1.25;min-height:38px}
 .soldCard{padding:8px;display:flex;flex-direction:column}.soldBtn{height:52px;border:1px solid #20c997;border-radius:10px;background:linear-gradient(90deg,#078b68,#0ac88e);color:white;font-size:20px;font-weight:950;letter-spacing:.5px}.soldSub{display:block;font-size:8px;font-weight:600;margin-top:2px}.assignBox{display:none;flex:1;margin-top:7px}.assignBox.on{display:flex;flex-direction:column}.assignBox label{display:block;color:#dce3ea;font-size:9px;margin:6px 0 4px}.assignSelect,.assignPrice{width:100%;height:39px;border-radius:8px;border:1px solid #3a4b5a;background:#111b25;color:#fff;padding:0 8px;font-size:11px}.assignPrice{font-size:20px}.assignSignal{height:20px;font-size:8px;font-weight:900;display:flex;align-items:center;justify-content:center}.assignActions{display:grid;grid-template-columns:.8fr 1.2fr;gap:5px;margin-top:auto}.assignActions button{height:40px;border-radius:8px;font-weight:900;font-size:9px}.assignCancel{border:1px solid #3a4958;background:#17212b;color:#e1e7ed}.assignConfirm{border:1px solid #16b989;background:#0aaa7f;color:white}
 .actions{display:none!important}.card{display:none!important}
-.footer{position:fixed;bottom:0;left:0;right:0;z-index:25;background:#071018f2;border-top:1px solid #263744;padding:5px 10px calc(5px + env(safe-area-inset-bottom))}.fi{max-width:430px;margin:auto}.ft{display:grid;grid-template-columns:1.15fr repeat(4,1fr);align-items:center;text-align:center}.ft .left{text-align:left}.ft label,.buds label{display:block;color:#798593;font-size:7px;text-transform:uppercase}.ft b{font-size:17px}.left b{font-size:22px;color:#39d7a1}.max{font-size:8px;color:#8995a2}.buds{border-top:1px solid #202f3b;margin-top:3px;padding-top:3px;display:grid;grid-template-columns:1.15fr repeat(4,1fr);text-align:center}.buds:before{content:""}.buds b{font-size:11px}.quickbar,.rivalsWrap{display:none!important}
+.footer{display:none!important}.quickbar,.rivalsWrap{display:none!important}
 @media(max-width:370px){header{grid-template-columns:minmax(0,1fr) 88px 48px 38px 38px}.bonusTop{font-size:9px}.playerWorkspace{grid-template-columns:1fr}#pa{min-height:auto}.empty{height:180px}.soldCard{min-height:200px}}
 
 </style>
@@ -59,7 +59,7 @@ main{padding:9px 10px 12px}
 <body>
 <div class="app">
 <header>
-  <div class="brand"><b>EC SALUTE ASTA</b><small>2026/27 · v2.3</small></div>
+  <div class="brand"><b>EC SALUTE ASTA</b><small>2026/27 · v2.4</small></div>
   <button class="bonusTop" onclick="bonus50()">+50 CREDITI</button>
   <div class="cred"><small>CREDITI</small><b id="hc">500</b></div>
   <button class="hbtn" id="undo">↶</button>
@@ -89,10 +89,7 @@ main{padding:9px 10px 12px}
 </main>
 
 <div id="rivals" style="display:none"></div>
-<div class="footer"><div class="fi">
-  <div class="ft">
-    <div class="left"><label>crediti</label><b id="credits">500</b><div class="max">MAX <strong id="max">476</strong></div></div>
-    <div><label>P</label><b id="sP">0/3</b></div>
+<div><label>P</label><b id="sP">0/3</b></div>
     <div><label>D</label><b id="sD">0/8</b></div>
     <div><label>C</label><b id="sC">0/8</b></div>
     <div><label>A</label><b id="sA">0/6</b></div>
@@ -274,14 +271,7 @@ window.remaining=r=>{
 window.pickFull=id=>{selected=PLAYERS.find(p=>p.id===id);q.value=selected.name;closeFull();render();scrollTo({top:0,behavior:"smooth"})}
 window.pick=id=>{selected=PLAYERS.find(p=>p.id===id);q.value=selected.name;close();render();scrollTo({top:0,behavior:"smooth"})}
 
-function footer(){
- let t=user();hc.textContent=t.remainingBudget;credits.textContent=t.remainingBudget;
- max.textContent=Math.max(0,t.remainingBudget-Math.max(0,slots(t)-1));
- ["P","D","C","A"].forEach(r=>{
-   document.getElementById("s"+r).textContent=`${t.counts[r]}/${RM[r]}`;
-   document.getElementById("b"+r).textContent=`${t.spent[r]}/${state.dynamic[r]}`
- })
-}
+function footer(){}
 
 function roleColor(r){return r==="A"?"#df2735":r==="C"?"#0aa86e":r==="D"?"#147cf0":"#8c63ff"}
 function renderDashboard(){
@@ -292,7 +282,7 @@ function renderDashboard(){
    const tx=/^F(\d)$/.exec(x.tier||""),ty=/^F(\d)$/.exec(y.tier||"");const xv=tx?+tx[1]:9,yv=ty?+ty[1]:9;
    return xv-yv||(y.score-x.score)||((x.tierPriority||999)-(y.tierPriority||999))||x.name.localeCompare(y.name,"it")
  }).slice(0,10);
- best.innerHTML=a.map((p,i)=>`<div class="bestItem" onclick="pickHome(${p.id})"><span class="rank">${i+1}</span><b>${p.name}</b><small>${p.team}</small><span class="r" style="background:${roleColor(p.role)}">${p.role}</span><span class="tierMini">${p.tier||"-"}</span></div>`).join("");
+ best.innerHTML=a.map((p,i)=>`<div class="bestItem" onclick="pickHome(${p.id})"><span class="rank">${i+1}</span><b>${p.name}</b><small>${p.team}</small><span class="r" style="background:${roleColor(p.role)}">${p.role}</span></div>`).join("");
  teams.innerHTML=Object.values(state.teams).map((t,i)=>{let m=Math.max(0,t.remainingBudget-Math.max(0,slots(t)-1));return `<div class="teamTile ${i===0?"me":""}" onclick="rivalDetail(${i})"><b>${displayPresident(t)}</b><div class="money">${t.remainingBudget}</div><small>MAX ${m}</small><div class="teamCounts">${["P","D","C","A"].map(r=>`<span>${r}<strong>${t.counts[r]}/${RM[r]}</strong></span>`).join("")}</div></div>`}).join("");
 }
 window.setHomeBest=r=>{homeBestRole=r;renderDashboard()}

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#07131f">
-<title>EC Salute Asta v2.4</title>
+<title>EC Salute Asta v2.5</title>
 <link rel="manifest" href="manifest.json">
 <style>
 :root{--bg:#07090d;--card:#14171d;--card2:#0b0e13;--line:#303641;--txt:#f5f7fb;--mut:#858d99;--g:#12b886;--b:#1e9bff;--y:#ffd34d;--red:#ff6484}
@@ -34,9 +34,9 @@ body.full-open{overflow:hidden;position:fixed;width:100%}
 /* v2.3 definitive iPhone layout */
 body{padding-bottom:18px}
 .app{max-width:430px;margin:auto;min-height:100vh}
-header{position:sticky;top:0;z-index:20;background:#07131f;border-bottom:1px solid #20303d;padding:calc(8px + env(safe-area-inset-top)) 10px 8px;display:grid;grid-template-columns:minmax(0,1fr) 104px 54px 40px 40px;gap:6px;align-items:center}
+header{position:sticky;top:0;z-index:20;background:#07131f;border-bottom:1px solid #20303d;padding:calc(8px + env(safe-area-inset-top)) 10px 8px;display:grid;grid-template-columns:minmax(0,1fr) 92px 54px 40px 40px;gap:6px;align-items:center}
 .brand{min-width:0}.brand b{display:block;font-size:17px;line-height:1.05;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.brand small{display:block;color:#8c96a4;font-size:10px;margin-top:4px}
-.bonusTop{height:40px;border-radius:11px;border:1px solid #12a978;background:#0a2d23;color:#45e2b0;font-weight:900;font-size:10px;padding:0 7px;white-space:nowrap}
+.bonusTop{height:40px;border-radius:11px;border:1px solid #12a978;background:#0a2d23;color:#45e2b0;font-weight:900;font-size:10px;padding:0 7px;white-space:nowrap}.bonusGroup{display:grid;grid-template-columns:1fr 1fr;gap:4px}.bonusGroup .bonusTop{width:100%;padding:0 4px}.bonusTop.used{opacity:.42;filter:saturate(.35)}.bonus25{border-color:#5b8dff;background:#0c213e;color:#8db3ff}
 .cred{text-align:center;min-width:0}.cred small{display:block;color:#8d96a3;font-size:7px}.cred b{font-size:21px;color:#39d7a1}
 .hbtn{width:40px;height:40px;border-radius:10px;border:1px solid #34404c;background:#111923;color:#eaf0f6;font-size:17px}
 main{padding:9px 10px 12px}
@@ -59,8 +59,8 @@ main{padding:9px 10px 12px}
 <body>
 <div class="app">
 <header>
-  <div class="brand"><b>EC SALUTE ASTA</b><small>2026/27 · v2.4</small></div>
-  <button class="bonusTop" onclick="bonus50()">+50 CREDITI</button>
+  <div class="brand"><b>EC SALUTE ASTA</b><small>2026/27 · v2.5</small></div>
+  <div class="bonusGroup"><button class="bonusTop" id="bonus50btn" onclick="openBonus(50)">+50</button><button class="bonusTop bonus25" id="bonus25btn" onclick="openBonus(25)">+25</button></div>
   <div class="cred"><small>CREDITI</small><b id="hc">500</b></div>
   <button class="hbtn" id="undo">↶</button>
   <button class="hbtn" id="settings">⚙</button>
@@ -114,10 +114,16 @@ let selected=null,state=load(),homeBestRole="A";
 function fresh(){
  let ts={};
  TEAMS.forEach((t,i)=>ts[i]={...t,initialBudget:500,remainingBudget:500,counts:{P:0,D:0,C:0,A:0},spent:{P:0,D:0,C:0,A:0},players:[]});
- return{teams:ts,sales:{},history:[],dynamic:{...RB},transferred:{P:false,D:false,C:false}};
+ return{teams:ts,sales:{},history:[],dynamic:{...RB},transferred:{P:false,D:false,C:false},bonuses:{b50:null,b25:null}};
 }
-function load(){try{let v2=JSON.parse(localStorage.getItem(KEY));if(v2)return v2;let v1=JSON.parse(localStorage.getItem("ecsalute_local_v1"));return v1||fresh()}catch(e){return fresh()}}
-function save(){localStorage.setItem(KEY,JSON.stringify(state));footer();rivalStrip();renderDashboard()}
+function load(){try{
+ let v2=JSON.parse(localStorage.getItem(KEY));
+ if(v2){if(!v2.bonuses)v2.bonuses={b50:null,b25:null};return v2}
+ let v1=JSON.parse(localStorage.getItem("ecsalute_local_v1"));
+ if(v1){if(!v1.bonuses)v1.bonuses={b50:null,b25:null};return v1}
+ return fresh()
+}catch(e){return fresh()}}
+function save(){localStorage.setItem(KEY,JSON.stringify(state));footer();rivalStrip();renderDashboard();renderBonusButtons()}
 function user(){return state.teams[0]}
 function slots(t){return Object.keys(RM).reduce((a,r)=>a+RM[r]-t.counts[r],0)}
 function maxBid(t,r){if(t.counts[r]>=RM[r])return 0;return Math.max(0,t.remainingBudget-(slots(t)-1))}
@@ -290,17 +296,44 @@ window.pickHome=id=>{selected=PLAYERS.find(p=>p.id===id);q.value=selected.name;r
 
 function rivalStrip(){const arr=Object.entries(state.teams).filter(([i])=>+i!==0);let high=Math.max(...arr.map(([i,t])=>Math.max(0,t.remainingBudget-Math.max(0,slots(t)-1))));const el=document.getElementById("rivals");el.innerHTML=arr.map(([i,t])=>{let m=Math.max(0,t.remainingBudget-Math.max(0,slots(t)-1));return `<button class="rchip ${m===high?"topmax":""}" onclick="rivalDetail(${i})"><b>${t.president} ${t.remainingBudget}</b><small>MAX ${m}</small></button>`}).join("")}
 window.rivalDetail=i=>{let t=state.teams[i],m=Math.max(0,t.remainingBudget-Math.max(0,slots(t)-1));let roster=t.players.map(x=>{let p=PLAYERS.find(z=>z.id===x.playerId);return p?`${p.name} (${p.role}) · ${x.price}`:""}).filter(Boolean);open(`<div class="sheetHead"><button class="x" onclick="close()">×</button><h2>${t.name}</h2></div><div style="color:#9da5b0">${t.president}</div><div class="rivalDetail"><div class="stat"><label>Crediti</label><b>${t.remainingBudget}</b></div><div class="stat"><label>MAX offerta</label><b>${m}</b></div><div class="stat"><label>P</label><b>${t.counts.P}/3</b></div><div class="stat"><label>D</label><b>${t.counts.D}/8</b></div><div class="stat"><label>C</label><b>${t.counts.C}/8</b></div><div class="stat"><label>A</label><b>${t.counts.A}/6</b></div></div><h3>Rosa</h3>${roster.length?roster.map(x=>`<div class="lrow" style="grid-template-columns:1fr"><div>${x}</div></div>`).join(""):'<div style="color:#89919c">Nessun acquisto.</div>'}`)}
-window.bonus50=()=>{let h='<div class="sheetHead"><button class="x" onclick="close()">×</button><h2>Assegna +50 crediti</h2></div><select id="ct" class="select">';Object.values(state.teams).forEach((t,i)=>h+=`<option value="${i}">${displayPresident(t)} (${t.remainingBudget})</option>`);open(h+'</select><button class="confirm" style="margin-top:12px" onclick="applyBonus50()">ASSEGNA +50</button><button class="cancel" onclick="close()">ANNULLA</button>')}
-window.applyBonus50=()=>{let i=+ct.value,before={teams:JSON.parse(JSON.stringify(state.teams))};state.teams[i].initialBudget+=50;state.teams[i].remainingBudget+=50;state.history.push({type:"credits",before});save();close()}
+window.openBonus=(amount)=>{
+ const key=amount===50?"b50":"b25";
+ if(state.bonuses&&state.bonuses[key]!==null){
+   const t=state.teams[state.bonuses[key]];
+   alert(`Bonus +${amount} già assegnato a ${displayPresident(t)}.`);
+   return;
+ }
+ let h=`<div class="sheetHead"><button class="x" onclick="close()">×</button><h2>Assegna +${amount} crediti</h2></div><select id="ct" class="select">`;
+ Object.values(state.teams).forEach((t,i)=>h+=`<option value="${i}">${displayPresident(t)} (${t.remainingBudget})</option>`);
+ open(h+`</select><button class="confirm" style="margin-top:12px" onclick="applyBonus(${amount})">ASSEGNA +${amount}</button><button class="cancel" onclick="close()">ANNULLA</button>`);
+}
+window.applyBonus=(amount)=>{
+ const key=amount===50?"b50":"b25";
+ if(state.bonuses&&state.bonuses[key]!==null)return;
+ const i=+ct.value;
+ const before={teams:JSON.parse(JSON.stringify(state.teams)),bonuses:JSON.parse(JSON.stringify(state.bonuses||{b50:null,b25:null}))};
+ state.teams[i].initialBudget+=amount;
+ state.teams[i].remainingBudget+=amount;
+ if(!state.bonuses)state.bonuses={b50:null,b25:null};
+ state.bonuses[key]=i;
+ state.history.push({type:"bonus",before,amount});
+ save();close();
+}
+function renderBonusButtons(){
+ const b50=document.getElementById("bonus50btn"),b25=document.getElementById("bonus25btn");
+ if(b50)b50.classList.toggle("used",!!(state.bonuses&&state.bonuses.b50!==null));
+ if(b25)b25.classList.toggle("used",!!(state.bonuses&&state.bonuses.b25!==null));
+}
 undo.onclick=()=>{
  let h=state.history.pop();if(!h)return alert("Niente da annullare");
  if(h.type==="sale"){state.teams=h.before.teams;state.dynamic=h.before.dynamic;state.transferred=h.before.transferred;state.sales=h.before.sales}
+ else if(h.type==="bonus"){state.teams=h.before.teams;state.bonuses=h.before.bonuses}
  else state.teams=h.before.teams;
  save();render()
 }
 
 settings.onclick=()=>open(`<button class="x" onclick="close()">×</button><h2>Impostazioni</h2>
-<div class="settings"><button onclick="rosters()">ROSE / CREDITI AVVERSARI</button><button onclick="creditsEdit()">MODIFICA CREDITI SQUADRA</button><button onclick="bonus50()">ASSEGNA +50 CREDITI</button><button onclick="reset()">RESET ASTA</button></div>`)
+<div class="settings"><button onclick="rosters()">ROSE / CREDITI AVVERSARI</button><button onclick="creditsEdit()">MODIFICA CREDITI SQUADRA</button><button onclick="openBonus(50)">ASSEGNA +50 CREDITI</button><button onclick="openBonus(25)">ASSEGNA +25 CREDITI</button><button onclick="reset()">RESET ASTA</button></div>`)
 
 window.rosters=()=>{
  let h="";
@@ -318,7 +351,7 @@ window.applyC=()=>{
  state.teams[i].initialBudget+=d;state.teams[i].remainingBudget+=d;state.history.push({type:"credits",before});save();close()
 }
 window.reset=()=>{if(confirm("Reset completo?")&&confirm("Sei sicuro?")){state=fresh();selected=null;q.value="";save();close();render()}}
-window.close=close;window.closeFull=closeFull;footer();rivalStrip();renderDashboard();render();
+window.close=close;window.closeFull=closeFull;footer();rivalStrip();renderDashboard();renderBonusButtons();render();
 
 if("serviceWorker" in navigator){
  addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}))
